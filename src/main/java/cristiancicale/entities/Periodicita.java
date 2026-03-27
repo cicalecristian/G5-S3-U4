@@ -1,5 +1,5 @@
 package cristiancicale.entities;
 
 public enum Periodicita {
-    SETTIMNALE, MENSILE, SEMESTRALE
+    SETTIMANALE, MENSILE, SEMESTRALE
 }

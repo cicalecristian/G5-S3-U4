@@ -26,7 +26,7 @@ public class ElementoCatalogoDAO {
 
         transaction.commit();
 
-        System.out.println("L'elemento " + newElementoCatalogo.getCodiceIsbn() + "è stato salvato correttamente");
+        System.out.println("L'elemento " + newElementoCatalogo.getCodiceIsbn() + " è stato salvato correttamente");
     }
 
     public void rimozioneElementoPerIsbn(String isbn) {

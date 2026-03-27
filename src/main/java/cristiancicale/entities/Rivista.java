@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Rivista extends ElementoCatalogo {
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "periodicita", nullable = false)
+    @Column(name = "periodicita", nullable = true)
     private Periodicita periodicita;
 
     protected Rivista() {

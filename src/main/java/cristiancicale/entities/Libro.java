@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @DiscriminatorValue("libro")
 public class Libro extends ElementoCatalogo {
 
-    @Column(name = "autore", nullable = false)
+    @Column(name = "autore", nullable = true)
     private String autore;
-    @Column(name = "genere", nullable = false)
+    @Column(name = "genere", nullable = true)
     private String genere;
 
     protected Libro() {

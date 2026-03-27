@@ -15,9 +15,9 @@ public abstract class ElementoCatalogo {
 
     @Column(name = "tipologia_id")
     private long id;
-    @Column(name = "codice_isbn", nullable = false, length = 30, unique = true)
+    @Column(name = "codice_isbn", nullable = false, unique = true)
     private String codiceIsbn;
-    @Column(name = "titolo", nullable = false, length = 20)
+    @Column(name = "titolo", nullable = false)
     private String titolo;
     @Column(name = "anno_pubblicazione", nullable = false)
     private LocalDate annoPubblicazione;
