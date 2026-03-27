@@ -24,9 +24,9 @@ public class Prestito {
 
     @Column(name = "data_inizio_prestito", nullable = false)
     private LocalDate dataInizioPrestito;
-    @Column(name = "data_restituzione_prevista", nullable = false)
+    @Column(name = "data_restituzione_prevista", nullable = true)
     private LocalDate dataRestituzionePrevista;
-    @Column(name = "data_restituzione_effettiva", nullable = false)
+    @Column(name = "data_restituzione_effettiva", nullable = true)
     private LocalDate dataRestituzioneEffettiva;
 
     protected Prestito() {
@@ -38,7 +38,7 @@ public class Prestito {
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
-        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
+        this.dataRestituzioneEffettiva = dataInizioPrestito.plusDays(60);
     }
 
     public long getId() {

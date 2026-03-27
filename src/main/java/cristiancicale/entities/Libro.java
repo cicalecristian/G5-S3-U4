@@ -35,7 +35,11 @@ public class Libro extends ElementoCatalogo {
     @Override
     public String toString() {
         return "Libro{" +
-                "autore='" + autore + '\'' +
+                "titolo='" + getTitolo() + '\'' +
+                ", annoPubblicazione=" + getAnnoPubblicazione() +
+                ", numeroPagine=" + getNumeroPagine() +
+                ", codiceIsbn='" + getCodiceIsbn() + '\'' +
+                ", autore='" + autore + '\'' +
                 ", genere='" + genere + '\'' +
                 '}';
     }

@@ -55,10 +55,14 @@ public class ElementoCatalogoDAO {
     }
 
     public List<ElementoCatalogo> cercaPerAnnoPubblicazione(int anno) {
+        LocalDate start = LocalDate.of(anno, 1, 1);
+        LocalDate end = LocalDate.of(anno, 12, 31);
+
         List<ElementoCatalogo> risultati = em.createQuery(
-                        "SELECT e FROM ElementoCatalogo e WHERE FUNCTION('YEAR', e.annoPubblicazione) = :anno",
+                        "SELECT e FROM ElementoCatalogo e WHERE e.annoPubblicazione BETWEEN :start AND :end",
                         ElementoCatalogo.class)
-                .setParameter("anno", anno)
+                .setParameter("start", start)
+                .setParameter("end", end)
                 .getResultList();
 
         if (risultati.isEmpty()) {
@@ -82,10 +86,10 @@ public class ElementoCatalogoDAO {
         return risultati;
     }
 
-    public List<Libro> cercaPerTitolo(String titolo) {
-        List<Libro> risultati = em.createQuery(
-                        "SELECT l FROM Libro l WHERE LOWER(l.titolo) LIKE LOWER(:titolo)",
-                        Libro.class)
+    public List<ElementoCatalogo> cercaPerTitolo(String titolo) {
+        List<ElementoCatalogo> risultati = em.createQuery(
+                        "SELECT e FROM ElementoCatalogo e WHERE LOWER(e.titolo) LIKE LOWER(:titolo)",
+                        ElementoCatalogo.class)
                 .setParameter("titolo", "%" + titolo + "%")
                 .getResultList();
 
@@ -96,7 +100,7 @@ public class ElementoCatalogoDAO {
         return risultati;
     }
 
-    public List<ElementoCatalogo> ricercaElementiInPrestitoPerTessera(String numeroDiTessera) {
+    public List<ElementoCatalogo> cercaElementiInPrestitoPerTessera(String numeroDiTessera) {
         List<ElementoCatalogo> risultati = em.createQuery(
                         "SELECT p.elementoPrestato FROM Prestito p " +
                                 "WHERE p.utente.numeroDiTessera = :tessera " +
@@ -112,7 +116,7 @@ public class ElementoCatalogoDAO {
         return risultati;
     }
 
-    public List<Prestito> ricercaPrestitiScaduti() {
+    public List<Prestito> cercaPrestitiScaduti() {
         List<Prestito> risultati = em.createQuery(
                         "SELECT p FROM Prestito p " +
                                 "WHERE p.dataRestituzioneEffettiva IS NULL " +

@@ -31,7 +31,11 @@ public class Rivista extends ElementoCatalogo {
     @Override
     public String toString() {
         return "Rivista{" +
-                "periodicita=" + periodicita +
+                "titolo='" + getTitolo() + '\'' +
+                ", annoPubblicazione=" + getAnnoPubblicazione() +
+                ", numeroPagine=" + getNumeroPagine() +
+                ", codiceIsbn='" + getCodiceIsbn() + '\'' +
+                ", periodicita=" + periodicita +
                 '}';
     }
 }
