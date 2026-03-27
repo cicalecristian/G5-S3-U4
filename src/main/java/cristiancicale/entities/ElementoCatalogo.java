@@ -20,7 +20,7 @@ public abstract class ElementoCatalogo {
     @Column(name = "titolo", nullable = false, length = 20)
     private String titolo;
     @Column(name = "anno_pubblicazione", nullable = false)
-    private LocalDate annoPubbliczione;
+    private LocalDate annoPubblicazione;
     @Column(name = "numero_pagine", nullable = false)
     private int numeroPagine;
 
@@ -30,10 +30,10 @@ public abstract class ElementoCatalogo {
     protected ElementoCatalogo() {
     }
 
-    public ElementoCatalogo(String codiceIsbn, String titolo, LocalDate annoPubbliczione, int numeroPagine) {
+    public ElementoCatalogo(String codiceIsbn, String titolo, LocalDate annoPubblicazione, int numeroPagine) {
         this.codiceIsbn = codiceIsbn;
         this.titolo = titolo;
-        this.annoPubbliczione = annoPubbliczione;
+        this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;
     }
 
@@ -49,8 +49,8 @@ public abstract class ElementoCatalogo {
         return titolo;
     }
 
-    public LocalDate getAnnoPubbliczione() {
-        return annoPubbliczione;
+    public LocalDate getAnnoPubblicazione() {
+        return annoPubblicazione;
     }
 
     public int getNumeroPagine() {
@@ -71,7 +71,7 @@ public abstract class ElementoCatalogo {
                 "id=" + id +
                 ", codiceIsbn='" + codiceIsbn + '\'' +
                 ", titolo='" + titolo + '\'' +
-                ", annoPubbliczione=" + annoPubbliczione +
+                ", annoPubbliczione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine +
                 ", prestitoAttivo=" + prestitoAttivo +
                 '}';
