@@ -2,11 +2,13 @@ package cristiancicale.dao;
 
 import cristiancicale.entities.ElementoCatalogo;
 import cristiancicale.entities.Libro;
+import cristiancicale.entities.Prestito;
 import cristiancicale.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ElementoCatalogoDAO {
@@ -89,6 +91,38 @@ public class ElementoCatalogoDAO {
 
         if (risultati.isEmpty()) {
             throw new NotFoundException("Nessun elemento trovato per il titolo: " + titolo);
+        }
+
+        return risultati;
+    }
+
+    public List<ElementoCatalogo> ricercaElementiInPrestitoPerTessera(String numeroDiTessera) {
+        List<ElementoCatalogo> risultati = em.createQuery(
+                        "SELECT p.elementoPrestato FROM Prestito p " +
+                                "WHERE p.utente.numeroDiTessera = :tessera " +
+                                "AND p.dataRestituzioneEffettiva IS NULL",
+                        ElementoCatalogo.class)
+                .setParameter("tessera", numeroDiTessera)
+                .getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new NotFoundException("Nessun prestito attivo per tessera: " + numeroDiTessera);
+        }
+
+        return risultati;
+    }
+
+    public List<Prestito> ricercaPrestitiScaduti() {
+        List<Prestito> risultati = em.createQuery(
+                        "SELECT p FROM Prestito p " +
+                                "WHERE p.dataRestituzioneEffettiva IS NULL " +
+                                "AND p.dataRestituzionePrevista < :oggi",
+                        Prestito.class)
+                .setParameter("oggi", LocalDate.now())
+                .getResultList();
+
+        if (risultati.isEmpty()) {
+            throw new NotFoundException("Nessun prestito scaduto trovato");
         }
 
         return risultati;
